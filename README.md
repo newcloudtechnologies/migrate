@@ -3,8 +3,14 @@
 [![Build Status](https://travis-ci.org/mattes/migrate.svg?branch=master)](https://travis-ci.org/mattes/migrate)
 [![GoDoc](https://godoc.org/github.com/mattes/migrate?status.svg)](https://godoc.org/github.com/mattes/migrate)
 
-A migration helper written in Go. Use it in your existing Golang code 
-or run commands via the CLI. 
+A migration helper written in Go. Use it in your existing Golang code
+or run commands via the CLI.
+
+This is lite version for PostgreSQL only. Therefore, the following dependencies are removed:
+
+* driver for Cassandra
+* driver for MySQL
+* driver for SQLite
 
 ```
 GoCode   import github.com/mattes/migrate/migrate
