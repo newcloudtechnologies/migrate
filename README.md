@@ -1,12 +1,9 @@
 # migrate
 
-[![Build Status](https://travis-ci.org/konjoot/migrate.svg?branch=master)](https://travis-ci.org/konjoot/migrate)
-[![GoDoc](https://godoc.org/github.com/konjoot/migrate?status.svg)](https://godoc.org/github.com/konjoot/migrate)
-
 A migration helper written in Go. Use it in your existing Golang code
 or run commands via the CLI.
 
-This is lite version for PostgreSQL only. Therefore, the following dependencies are removed:
+This is lite version (of mattes/migrate library) for PostgreSQL only. Therefore, the following dependencies are removed:
 
 * driver for Cassandra
 * driver for MySQL
