@@ -1,7 +1,7 @@
 # migrate
 
-[![Build Status](https://travis-ci.org/mattes/migrate.svg?branch=master)](https://travis-ci.org/mattes/migrate)
-[![GoDoc](https://godoc.org/github.com/mattes/migrate?status.svg)](https://godoc.org/github.com/mattes/migrate)
+[![Build Status](https://travis-ci.org/konjoot/migrate.svg?branch=master)](https://travis-ci.org/konjoot/migrate)
+[![GoDoc](https://godoc.org/github.com/konjoot/migrate?status.svg)](https://godoc.org/github.com/konjoot/migrate)
 
 A migration helper written in Go. Use it in your existing Golang code
 or run commands via the CLI.
@@ -13,13 +13,13 @@ This is lite version for PostgreSQL only. Therefore, the following dependencies 
 * driver for SQLite
 
 ```
-GoCode   import github.com/mattes/migrate/migrate
-CLI      go get -u github.com/mattes/migrate
+GoCode   import github.com/konjoot/migrate/migrate
+CLI      go get -u github.com/konjoot/migrate
 ```
 
 __Features__
 
-* Super easy to implement [Driver interface](http://godoc.org/github.com/mattes/migrate/driver#Driver).
+* Super easy to implement [Driver interface](http://godoc.org/github.com/konjoot/migrate/driver#Driver).
 * Gracefully quit running migrations on ``^C``.
 * No magic search paths routines, no hard-coded config files.
 * CLI is build on top of the ``migrate package``.
@@ -27,20 +27,20 @@ __Features__
 
 ## Available Drivers
 
- * [PostgreSQL](https://github.com/mattes/migrate/tree/master/driver/postgres)
- * [Cassandra](https://github.com/mattes/migrate/tree/master/driver/cassandra)
- * [SQLite](https://github.com/mattes/migrate/tree/master/driver/sqlite3)
- * [MySQL](https://github.com/mattes/migrate/tree/master/driver/mysql) ([experimental](https://github.com/mattes/migrate/issues/1#issuecomment-58728186))
+ * [PostgreSQL](https://github.com/konjoot/migrate/tree/master/driver/postgres)
+ * [Cassandra](https://github.com/konjoot/migrate/tree/master/driver/cassandra)
+ * [SQLite](https://github.com/konjoot/migrate/tree/master/driver/sqlite3)
+ * [MySQL](https://github.com/konjoot/migrate/tree/master/driver/mysql) ([experimental](https://github.com/konjoot/migrate/issues/1#issuecomment-58728186))
  * Bash (planned)
 
-Need another driver? Just implement the [Driver interface](http://godoc.org/github.com/mattes/migrate/driver#Driver) and open a PR.
+Need another driver? Just implement the [Driver interface](http://godoc.org/github.com/konjoot/migrate/driver#Driver) and open a PR.
 
 
 ## Usage from Terminal
 
 ```bash
 # install
-go get github.com/mattes/migrate
+go get github.com/konjoot/migrate
 
 # create new migration file in path
 migrate -url driver://url -path ./migrations create migration_file_xyz
@@ -79,13 +79,13 @@ migrate -url driver://url -path ./migrations goto v
 
 ## Usage in Go
 
-See GoDoc here: http://godoc.org/github.com/mattes/migrate/migrate
+See GoDoc here: http://godoc.org/github.com/konjoot/migrate/migrate
 
 ```go
-import "github.com/mattes/migrate/migrate"
+import "github.com/konjoot/migrate/migrate"
 
 // Import any required drivers so that they are registered and available
-import _ "github.com/mattes/migrate/driver/mysql"
+import _ "github.com/konjoot/migrate/driver/mysql"
 
 // use synchronous versions of migration functions ...
 allErrors, ok := migrate.UpSync("driver://url", "./path")
