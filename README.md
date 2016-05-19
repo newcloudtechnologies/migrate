@@ -3,7 +3,7 @@
 A migration helper written in Go. Use it in your existing Golang code
 or run commands via the CLI.
 
-This is lite version (of mattes/migrate library) for PostgreSQL only. Therefore, the following dependencies are removed:
+This is lite version of mattes/migrate library for PostgreSQL only. Therefore, the following dependencies are removed:
 
 * driver for Cassandra
 * driver for MySQL
@@ -11,7 +11,6 @@ This is lite version (of mattes/migrate library) for PostgreSQL only. Therefore,
 
 ```
 GoCode   import github.com/konjoot/migrate/migrate
-CLI      go get -u github.com/konjoot/migrate
 ```
 
 __Features__
@@ -19,7 +18,6 @@ __Features__
 * Super easy to implement [Driver interface](http://godoc.org/github.com/konjoot/migrate/driver#Driver).
 * Gracefully quit running migrations on ``^C``.
 * No magic search paths routines, no hard-coded config files.
-* CLI is build on top of the ``migrate package``.
 
 
 ## Available Drivers
@@ -28,48 +26,6 @@ __Features__
  * Bash (planned)
 
 Need another driver? Just implement the [Driver interface](http://godoc.org/github.com/konjoot/migrate/driver#Driver) and open a PR.
-
-
-## Usage from Terminal
-
-```bash
-# install
-go get github.com/konjoot/migrate
-
-# create new migration file in path
-migrate -url driver://url -path ./migrations create migration_file_xyz
-
-# apply all available migrations
-migrate -url driver://url -path ./migrations up
-
-# roll back all migrations
-migrate -url driver://url -path ./migrations down
-
-# roll back the most recently applied migration, then run it again.
-migrate -url driver://url -path ./migrations redo
-
-# run down and then up command
-migrate -url driver://url -path ./migrations reset
-
-# show the current migration version
-migrate -url driver://url -path ./migrations version
-
-# apply the next n migrations
-migrate -url driver://url -path ./migrations migrate +1
-migrate -url driver://url -path ./migrations migrate +2
-migrate -url driver://url -path ./migrations migrate +n
-
-# roll back the previous n migrations
-migrate -url driver://url -path ./migrations migrate -1
-migrate -url driver://url -path ./migrations migrate -2
-migrate -url driver://url -path ./migrations migrate -n
-
-# go to specific migration
-migrate -url driver://url -path ./migrations goto 1
-migrate -url driver://url -path ./migrations goto 10
-migrate -url driver://url -path ./migrations goto v
-```
-
 
 ## Usage in Go
 
