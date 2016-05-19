@@ -25,9 +25,6 @@ __Features__
 ## Available Drivers
 
  * [PostgreSQL](https://github.com/konjoot/migrate/tree/master/driver/postgres)
- * [Cassandra](https://github.com/konjoot/migrate/tree/master/driver/cassandra)
- * [SQLite](https://github.com/konjoot/migrate/tree/master/driver/sqlite3)
- * [MySQL](https://github.com/konjoot/migrate/tree/master/driver/mysql) ([experimental](https://github.com/konjoot/migrate/issues/1#issuecomment-58728186))
  * Bash (planned)
 
 Need another driver? Just implement the [Driver interface](http://godoc.org/github.com/konjoot/migrate/driver#Driver) and open a PR.
@@ -82,7 +79,7 @@ See GoDoc here: http://godoc.org/github.com/konjoot/migrate/migrate
 import "github.com/konjoot/migrate/migrate"
 
 // Import any required drivers so that they are registered and available
-import _ "github.com/konjoot/migrate/driver/mysql"
+import _ "github.com/konjoot/migrate/driver/postgres"
 
 // use synchronous versions of migration functions ...
 allErrors, ok := migrate.UpSync("driver://url", "./path")
@@ -110,7 +107,7 @@ The format of migration files looks like this:
 ...
 ```
 
-Why two files? This way you could still do sth like 
+Why two files? This way you could still do sth like
 ``psql -f ./db/migrations/001_initial_plan_to_do_sth.up.sql`` and there is no
 need for any custom markup language to divide up and down migrations. Please note
 that the filename extension depends on the driver.
