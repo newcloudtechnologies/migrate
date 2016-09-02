@@ -17,6 +17,48 @@ import (
 	pipep "github.com/konjoot/migrate/pipe"
 )
 
+// Whether migrations is needed
+func Check(pipe chan interface{}, url, migrationsPath string) bool {
+
+	d, files, version, err := initDriverAndReadMigrationFilesAndGetVersion(url, migrationsPath)
+	if err != nil {
+		go pipep.Close(pipe, err)
+		return false
+	}
+
+	applyMigrationFiles, err := files.ToLastFrom(version)
+	if err != nil {
+		if err2 := d.Close(); err2 != nil {
+			pipe <- err2
+		}
+		go pipep.Close(pipe, err)
+		return false
+	}
+
+	pipe <- fmt.Sprintf("schema version: %d", version)
+
+	for _, file := range applyMigrationFiles {
+		pipe <- fmt.Sprintf("pending %s", file.Name)
+	}
+
+	if err := d.Close(); err != nil {
+		pipe <- err
+	}
+
+	go pipep.Close(pipe, nil)
+
+	return len(applyMigrationFiles) > 0
+}
+
+// CheckSync is synchronous version of Check
+func CheckSync(url, migrationsPath string) (dirty bool, err []error, ok bool) {
+	pipe := pipep.New()
+	res := make(chan bool, 1)
+	go func() { res <- Check(pipe, url, migrationsPath) }()
+	err = pipep.ReadErrors(pipe)
+	return <-res, err, len(err) == 0
+}
+
 // Up applies all available migrations
 func Up(pipe chan interface{}, url, migrationsPath string) {
 	d, files, version, err := initDriverAndReadMigrationFilesAndGetVersion(url, migrationsPath)

@@ -14,6 +14,37 @@ var driverUrls = []string{
 	"postgres://postgres@" + os.Getenv("POSTGRES_PORT_5432_TCP_ADDR") + ":" + os.Getenv("POSTGRES_PORT_5432_TCP_PORT") + "/migrate?sslmode=disable",
 }
 
+func TestCheck(t *testing.T) {
+	for _, driverUrl := range driverUrls {
+		t.Logf("Test driver: %s", driverUrl)
+		tmpdir, err := ioutil.TempDir("/tmp", "migrate-test")
+		if err != nil {
+			t.Fatal(err)
+		}
+
+		println("first check")
+		dirty, errs, ok := CheckSync(driverUrl, tmpdir)
+		if dirty {
+			t.Fatal("expect no migrations are needed")
+		}
+		if !ok {
+			t.Fatalf("expected no errors, but got %s", errs[0])
+		}
+
+		Create(driverUrl, tmpdir, "migration1")
+		Create(driverUrl, tmpdir, "migration2")
+
+		println("after create")
+		dirty, errs, ok = CheckSync(driverUrl, tmpdir)
+		if !dirty {
+			t.Fatal("expect migrations are needed")
+		}
+		if !ok {
+			t.Fatalf("expected no errors, but got %s", errs[0])
+		}
+	}
+}
+
 func TestCreate(t *testing.T) {
 	for _, driverUrl := range driverUrls {
 		t.Logf("Test driver: %s", driverUrl)
