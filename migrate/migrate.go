@@ -37,17 +37,25 @@ func Check(pipe chan interface{}, url, migrationsPath string) bool {
 
 	pipe <- fmt.Sprintf("schema version: %d", version)
 
+	dirty := len(applyMigrationFiles) > 0
+
+	if dirty {
+		pipe <- "schema isn't up to date :("
+	} else {
+		pipe <- "schema is up to date :)"
+	}
+
 	for _, file := range applyMigrationFiles {
 		pipe <- fmt.Sprintf("pending %s", file.Name)
 	}
 
 	if err := d.Close(); err != nil {
-		pipe <- err
+		go pipep.Close(pipe, err)
 	}
 
 	go pipep.Close(pipe, nil)
 
-	return len(applyMigrationFiles) > 0
+	return dirty
 }
 
 // CheckSync is synchronous version of Check
