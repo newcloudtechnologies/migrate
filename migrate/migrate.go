@@ -39,14 +39,8 @@ func Check(pipe chan interface{}, url, migrationsPath string) bool {
 
 	dirty := len(applyMigrationFiles) > 0
 
-	if dirty {
-		pipe <- "schema isn't up to date :("
-	} else {
-		pipe <- "schema is up to date :)"
-	}
-
 	for _, file := range applyMigrationFiles {
-		pipe <- fmt.Sprintf("pending %s", file.Name)
+		pipe <- file
 	}
 
 	if err := d.Close(); err != nil {
