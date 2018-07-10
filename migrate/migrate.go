@@ -11,10 +11,10 @@ import (
 	"strconv"
 	"strings"
 
-	"github.com/konjoot/migrate/driver"
-	"github.com/konjoot/migrate/file"
-	"github.com/konjoot/migrate/migrate/direction"
-	pipep "github.com/konjoot/migrate/pipe"
+	"github.com/newcloudtechnologies/migrate/driver"
+	"github.com/newcloudtechnologies/migrate/file"
+	"github.com/newcloudtechnologies/migrate/migrate/direction"
+	pipep "github.com/newcloudtechnologies/migrate/pipe"
 )
 
 // Whether migrations is needed

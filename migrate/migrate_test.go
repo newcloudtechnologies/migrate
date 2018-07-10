@@ -6,7 +6,7 @@ import (
 	"testing"
 	// Ensure imports for each driver we wish to test
 
-	_ "github.com/konjoot/migrate/driver/postgres"
+	_ "github.com/newcloudtechnologies/migrate/driver/postgres"
 )
 
 // Add Driver URLs here to test basic Up, Down, .. functions.

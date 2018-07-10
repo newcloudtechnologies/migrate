@@ -10,32 +10,32 @@ This is lite version of mattes/migrate library for PostgreSQL only. Therefore, t
 * driver for SQLite
 
 ```
-GoCode   import github.com/konjoot/migrate/migrate
+GoCode   import github.com/newcloudtechnologies/migrate/migrate
 ```
 
 __Features__
 
-* Super easy to implement [Driver interface](http://godoc.org/github.com/konjoot/migrate/driver#Driver).
+* Super easy to implement [Driver interface](http://godoc.org/github.com/newcloudtechnologies/migrate/driver#Driver).
 * Gracefully quit running migrations on ``^C``.
 * No magic search paths routines, no hard-coded config files.
 
 
 ## Available Drivers
 
- * [PostgreSQL](https://github.com/konjoot/migrate/tree/master/driver/postgres)
+ * [PostgreSQL](https://github.com/newcloudtechnologies/migrate/tree/master/driver/postgres)
  * Bash (planned)
 
-Need another driver? Just implement the [Driver interface](http://godoc.org/github.com/konjoot/migrate/driver#Driver) and open a PR.
+Need another driver? Just implement the [Driver interface](http://godoc.org/github.com/newcloudtechnologies/migrate/driver#Driver) and open a PR.
 
 ## Usage in Go
 
-See GoDoc here: http://godoc.org/github.com/konjoot/migrate/migrate
+See GoDoc here: http://godoc.org/github.com/newcloudtechnologies/migrate/migrate
 
 ```go
-import "github.com/konjoot/migrate/migrate"
+import "github.com/newcloudtechnologies/migrate/migrate"
 
 // Import any required drivers so that they are registered and available
-import _ "github.com/konjoot/migrate/driver/postgres"
+import _ "github.com/newcloudtechnologies/migrate/driver/postgres"
 
 // use synchronous versions of migration functions ...
 allErrors, ok := migrate.UpSync("driver://url", "./path")

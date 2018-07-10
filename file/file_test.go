@@ -1,11 +1,12 @@
 package file
 
 import (
-	"github.com/konjoot/migrate/migrate/direction"
 	"io/ioutil"
 	"os"
 	"path"
 	"testing"
+
+	"github.com/newcloudtechnologies/migrate/migrate/direction"
 )
 
 func TestParseFilenameSchema(t *testing.T) {

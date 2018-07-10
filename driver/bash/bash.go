@@ -2,8 +2,8 @@
 package bash
 
 import (
-	"github.com/konjoot/migrate/driver"
-	"github.com/konjoot/migrate/file"
+	"github.com/newcloudtechnologies/migrate/driver"
+	"github.com/newcloudtechnologies/migrate/file"
 )
 
 type Driver struct {

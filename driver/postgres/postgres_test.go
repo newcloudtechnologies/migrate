@@ -5,9 +5,9 @@ import (
 	"os"
 	"testing"
 
-	"github.com/konjoot/migrate/file"
-	"github.com/konjoot/migrate/migrate/direction"
-	pipep "github.com/konjoot/migrate/pipe"
+	"github.com/newcloudtechnologies/migrate/file"
+	"github.com/newcloudtechnologies/migrate/migrate/direction"
+	pipep "github.com/newcloudtechnologies/migrate/pipe"
 )
 
 // TestMigrate runs some additional tests on Migrate().

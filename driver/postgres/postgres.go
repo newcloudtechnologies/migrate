@@ -7,10 +7,10 @@ import (
 	"fmt"
 	"strconv"
 
-	"github.com/konjoot/migrate/driver"
-	"github.com/konjoot/migrate/file"
-	"github.com/konjoot/migrate/migrate/direction"
 	"github.com/lib/pq"
+	"github.com/newcloudtechnologies/migrate/driver"
+	"github.com/newcloudtechnologies/migrate/file"
+	"github.com/newcloudtechnologies/migrate/migrate/direction"
 )
 
 type Driver struct {
